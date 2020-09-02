@@ -19,12 +19,12 @@ validint() {
   fi
 
   # удалить все цифры из числа для проверки
-  nodigits=${testvalue/[[:digit:]]/} # the same as the below command
-  #  nodigits="$(echo $testvalue | sed 's/[[:digit:]]//g')"
+  #  nodigits=${testvalue/[[:digit:]]/} # the same as the below command -- NOT WORK WITH 6-VALIDFLOAT
+  nodigits="$(echo $testvalue | sed 's/[[:digit:]]//g')"
 
   # проверить наличие нецифровых символов
   if [ -n "$nodigits" ]; then
-    echo "Invalid number format! Only digits, no commas, spaces, etc." >&2
+    echo "$nodigits - Invalid number format! Only digits, no commas, spaces, etc." >&2
     return 1
   fi
 
@@ -48,6 +48,6 @@ validint() {
 }
 
 # Проверка ввода
-if validint "$1" "$2" "$3"; then
-  echo "Input is a valid integer within your constraints."
-fi
+#if validint "$1" "$2" "$3"; then
+#  echo "Input is a valid integer within your constraints."
+#fi
